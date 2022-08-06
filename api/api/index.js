@@ -17,7 +17,7 @@ import http from 'http';
 import path from 'path';
 import { readFileSync } from 'fs';
 
-const url = 'mongodb+srv://issuetracker_user:2erllKuWsYj8e5Rr@cluster0.qxehy0z.mongodb.net/issue_tracker?retryWrites=true&w=majority';
+const url = process.env.DB_URL || '';
 
 let db;
 
@@ -146,7 +146,7 @@ async function startApolloServer(app, httpServer) {
           ],
       });
       await server.start();
-      server.applyMiddleware({app /*, path: '/graphql', cors: enableCors*/ });
+      server.applyMiddleware({app, path: '/graphql', cors: enableCors });
     //await new Promise<void>(resolve => httpServer.listen({ port: 4000 }, resolve));
       await new Promise(resolve => httpServer.listen({ port: port }, resolve));
       console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`);
