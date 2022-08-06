@@ -146,7 +146,7 @@ async function startApolloServer(app, httpServer) {
           ],
       });
       await server.start();
-      server.applyMiddleware({app, path: '/graphql', cors: enableCors });
+      server.applyMiddleware({app /*, path: '/graphql', cors: enableCors*/ });
     //await new Promise<void>(resolve => httpServer.listen({ port: 4000 }, resolve));
       await new Promise(resolve => httpServer.listen({ port: port }, resolve));
       console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`);
