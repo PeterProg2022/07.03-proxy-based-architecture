@@ -17,7 +17,7 @@ import http from 'http';
 import path from 'path';
 import { readFileSync } from 'fs';
 
-const url = process.env.DB_URL || '';
+const url = process.env.DB_URL || 'mongodb+srv://issuetracker_user:2erllKuWsYj8e5Rr@cluster0.qxehy0z.mongodb.net/issue_tracker?retryWrites=true&w=majority';
 
 let db;
 
@@ -134,7 +134,7 @@ const port = process.env.API_SERVER_PORT || 3000;
 async function startApolloServer(app, httpServer) {
 
   try {
-//       await connectToDb();
+      await connectToDb();
 
       const server = new ApolloServer({
           typeDefs: readFileSync( path.join(process.cwd(), 'api' , 'schema.graphql') , 'utf8'),
