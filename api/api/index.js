@@ -134,7 +134,7 @@ const port = process.env.API_SERVER_PORT || 3000;
 async function startApolloServer(app, httpServer) {
 
   try {
-//       await connectToDb();
+      await connectToDb();
 
       const server = new ApolloServer({
           typeDefs: readFileSync( path.join(process.cwd(), 'api' , 'schema.graphql') , 'utf8'),
